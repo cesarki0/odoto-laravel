@@ -18,8 +18,6 @@ WORKDIR /var/www/html
 # Instalar dependencias de Laravel
 RUN composer install --no-dev --optimize-autoloader
 
-# Generar APP_KEY automáticamente
-RUN php artisan key:generate
 
 # Exponer puerto
 EXPOSE 80
