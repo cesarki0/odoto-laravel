@@ -21,7 +21,7 @@ class PacienteController extends Controller
     }
 
     
-    public function storeOriginal(Request $request)
+    public function store(Request $request)
     {
         //
 
@@ -52,25 +52,7 @@ class PacienteController extends Controller
 
     }
 
-        public function store(Request $request)
-         {
-                try {
-                    // Guardar todo lo que venga en el request
-                    $paciente = Paciente::create($request->all());
-
-                    return response()->json([
-                        'success' => true,
-                        'paciente' => $paciente
-                    ], 201);
-
-                } catch (\Exception $e) {
-                    // Capturar el error y mostrarlo
-                    return response()->json([
-                        'success' => false,
-                        'error' => $e->getMessage()
-                    ], 500);
-                }
-        }
+      
 
     
     public function show($id)
