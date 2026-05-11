@@ -11,7 +11,7 @@ class PacienteController extends Controller
     {
         return response()->json(['mensaje' => 'La API está respondiendo'], 200);
     }
-    
+
     public function index()
     {
         //
@@ -21,13 +21,13 @@ class PacienteController extends Controller
     }
 
     
-    public function store(Request $request)
+    public function storeOriginal(Request $request)
     {
         //
 
-       echo "hola";
 
         $paciente = new Paciente();
+
         $paciente->nombre = $request->nombre;
         $paciente->direccion = $request->direccion;
         $paciente->fecha_nacimiento = $request->fecha_nacimiento;
@@ -51,6 +51,26 @@ class PacienteController extends Controller
 
 
     }
+
+        public function store(Request $request)
+         {
+                try {
+                    // Guardar todo lo que venga en el request
+                    $paciente = Paciente::create($request->all());
+
+                    return response()->json([
+                        'success' => true,
+                        'paciente' => $paciente
+                    ], 201);
+
+                } catch (\Exception $e) {
+                    // Capturar el error y mostrarlo
+                    return response()->json([
+                        'success' => false,
+                        'error' => $e->getMessage()
+                    ], 500);
+                }
+        }
 
     
     public function show($id)
