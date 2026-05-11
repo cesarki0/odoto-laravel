@@ -13,7 +13,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 
 });
-
+Route::get('/pacientes/test', [PacienteController::class, 'test']);
 Route::apiResource('pacientes', PacienteController::class);
 Route::apiResource('citas', CitaController::class);
 Route::apiResource('tratamientos', TratamientoController::class);

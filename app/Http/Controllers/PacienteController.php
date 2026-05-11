@@ -7,11 +7,11 @@ use Illuminate\Http\Request;
 
 class PacienteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function test()
+    {
+        return response()->json(['mensaje' => 'La API está respondiendo'], 200);
+    }
+    
     public function index()
     {
         //
