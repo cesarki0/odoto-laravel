@@ -25,6 +25,8 @@ class PacienteController extends Controller
     {
         //
 
+       echo "hola";
+
         $paciente = new Paciente();
         $paciente->nombre = $request->nombre;
         $paciente->direccion = $request->direccion;
