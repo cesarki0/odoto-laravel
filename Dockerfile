@@ -25,12 +25,6 @@ RUN composer install --no-dev --optimize-autoloader
 # Exponer puerto
 EXPOSE 80
 
-RUN php artisan migrate --force
-
-RUN php artisan migrate --seed --force
-
-
-
 # Comando de inicio
 # CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=80"]
 CMD php artisan migrate --seed --force && php artisan serve --host=0.0.0.0 --port=80
