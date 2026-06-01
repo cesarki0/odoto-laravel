@@ -105,4 +105,14 @@ class PacienteController extends Controller
         return response()->json(null, 204);
 
     }
+
+    //citas
+    public function citas($id)
+        {
+            $paciente = Paciente::findOrFail($id);
+            // Traer citas con la relación paciente
+                $citas = $paciente->citas()->with('paciente')->get();
+
+                return response()->json($citas);
+        }
 }

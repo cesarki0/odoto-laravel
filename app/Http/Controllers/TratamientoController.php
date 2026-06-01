@@ -11,7 +11,7 @@ class TratamientoController extends Controller
     public function index()
     {
         //
-           return Tratamiento::with('paciente','pagos')->get();
+           return Tratamiento::with('paciente', 'pagos')->get();
     }
 
    

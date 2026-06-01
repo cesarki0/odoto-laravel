@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pago;
+use App\Models\Tratamiento;
 use Illuminate\Http\Request;
 
 class PagoController extends Controller
@@ -12,7 +13,7 @@ class PagoController extends Controller
     {
         //
 
-         return Pago::with('tratamiento')->get();
+         return Pago::with('tratamiento.paciente')->orderBy('fecha', 'desc')->get();
 
     }
 
@@ -21,6 +22,11 @@ class PagoController extends Controller
     public function store(Request $request)
     {
         //
+         $tratamiento = Tratamiento::findOrFail($request->tratamiento_id);
+
+        $total = $tratamiento->costo; // siempre usar el costo del tratamiento
+        $adelanto = $request->adelanto;
+        $saldo = $total - $adelanto;
 
         $pago = new Pago();
         $pago->tratamiento_id = $request->tratamiento_id;
