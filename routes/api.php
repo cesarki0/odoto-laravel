@@ -11,6 +11,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
+// Responder a preflight requests (OPTIONS) para cualquier ruta de la API
+Route::options('{any}', function (Request $request) {
+    return response()->json([], 200);
+})->where('any', '.*');
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 
