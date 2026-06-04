@@ -11,8 +11,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
-// Responder a preflight requests (OPTIONS) para cualquier ruta de la API
-Route::options('{any}', function (Request $request) {
+// --- RUTA GENÉRICA PARA PRE-FLIGHT (OPTIONS) ---
+// Esto responde a cualquier petición OPTIONS dentro de /api/*
+// y permite que el middleware de CORS añada los headers.
+Route::options('/{any}', function (Request $request) {
     return response()->json([], 200);
 })->where('any', '.*');
 
