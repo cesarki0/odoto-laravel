@@ -11,13 +11,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
-// --- RUTA GENÉRICA PARA PRE-FLIGHT (OPTIONS) ---
-// Esto responde a cualquier petición OPTIONS dentro de /api/*
-// y permite que el middleware de CORS añada los headers.
-Route::options('/{any}', function (Request $request) {
-    return response()->json([], 200);
-})->where('any', '.*');
-
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 
