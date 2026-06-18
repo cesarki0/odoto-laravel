@@ -16,10 +16,14 @@ class CreateTratamientosTable extends Migration
         Schema::create('tratamientos', function (Blueprint $table) {
             $table->id();
 
-                 $table->foreignId('paciente_id')->constrained('pacientes')->onDelete('cascade');
+                $table->foreignId('paciente_id')->constrained('pacientes')->onDelete('cascade');
+                $table->foreignId('doctor_id')->constrained('doctors')->onDelete('cascade');
+
+
                 $table->string('descripcion');
                 $table->string('pieza')->nullable(); // número de diente
                 $table->decimal('costo', 8, 2)->default(0);
+                 $table->string('estado')->default('activo');
 
             $table->timestamps();
         });

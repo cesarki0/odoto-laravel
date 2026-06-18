@@ -11,9 +11,11 @@ class Tratamiento extends Model
 
      protected $fillable = [
         'paciente_id',
+        'doctor_id',
         'descripcion',
         'pieza',
         'costo',
+        'estado',
     ];
 
     public function paciente()
@@ -24,6 +26,11 @@ class Tratamiento extends Model
     public function pagos()
     {
         return $this->hasMany(Pago::class);
+    }
+
+     public function doctor()
+    {
+        return $this->belongsTo(Doctor::class);
     }
 
 }

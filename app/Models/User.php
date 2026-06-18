@@ -19,6 +19,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'clinic_id',
         'name',
         'email',
         'password',
@@ -42,6 +43,24 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function clinic()
+    {
+        return $this->belongsTo(Cliente::class, 'clinic_id');
+    }
+
+    public function roles()
+    {
+        return $this->belongsToMany(Rol::class, 'users_roles', 'user_id', 'role_id');
+    }
+
+    public function doctor()
+    {
+        return $this->hasOne(Doctor::class);
+    }
+
+    
+
 
 
 

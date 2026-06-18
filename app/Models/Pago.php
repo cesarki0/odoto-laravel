@@ -12,6 +12,7 @@ class Pago extends Model
 
      protected $fillable = [
         'tratamiento_id',
+        'paciente_id',
         'fecha',
         'total',
         'adelanto',
@@ -21,6 +22,11 @@ class Pago extends Model
     public function tratamiento()
     {
         return $this->belongsTo(Tratamiento::class);
+    }
+
+      public function paciente()
+    {
+        return $this->belongsTo(Paciente::class);
     }
 
 }

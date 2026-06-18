@@ -10,8 +10,11 @@ class Paciente extends Model
     use HasFactory;
 
     protected $fillable = [
+
+        'clinic_id',
         
         'nombre',
+        'apellido',
         'direccion',
         'fecha_nacimiento',
         'celular',
@@ -31,6 +34,16 @@ class Paciente extends Model
     
 
     // Relaciones
+
+      public function clinic()
+    {
+        return $this->belongsTo(Cliente::class);
+    }
+
+       public function doctor()
+    {
+        return $this->belongsTo(Doctor::class);
+    }
     
     public function citas()
     {
@@ -42,9 +55,20 @@ class Paciente extends Model
         return $this->hasMany(Tratamiento::class);
     }
 
+      public function pagos()
+    {
+        return $this->hasMany(Pago::class);
+    }
+
+
     public function odontograma()
     {
         return $this->hasMany(Odontograma::class);
+    }
+
+     public function historiasClinicas()
+    {
+        return $this->hasMany(Historias_Clinicas::class);
     }
 
 

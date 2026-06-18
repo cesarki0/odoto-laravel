@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCitasTable extends Migration
+class CreateHistoriasClinicasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,18 @@ class CreateCitasTable extends Migration
      */
     public function up()
     {
-        Schema::create('citas', function (Blueprint $table) {
+        Schema::create('historias_clinicas', function (Blueprint $table) {
             $table->id();
 
-          
-            $table->foreignId('doctor_id')->constrained('doctors')->onDelete('cascade');
-              $table->foreignId('paciente_id')->constrained('pacientes')->onDelete('cascade');
 
-              
-                $table->dateTime('fecha_hora');
-                $table->string('motivo')->nullable();
-                $table->enum('estado', ['pendiente','atendida','cancelada'])->default('pendiente');
+             $table->foreignId('paciente_id')->constrained('pacientes')->onDelete('cascade');
+            $table->foreignId('doctor_id')->constrained('doctors')->onDelete('cascade');
+
+             $table->date('fecha');
+            $table->text('motivo')->nullable();
+            $table->text('diagnostico')->nullable();
+
+
 
             $table->timestamps();
         });
@@ -36,6 +37,6 @@ class CreateCitasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('citas');
+        Schema::dropIfExists('historias_clinicas');
     }
 }

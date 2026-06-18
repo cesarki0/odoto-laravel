@@ -21,6 +21,9 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+
+
+            $table->foreignId('clinic_id')->constrained('clientes')->onDelete('cascade');
         });
     }
 

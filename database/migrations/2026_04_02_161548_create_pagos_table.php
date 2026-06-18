@@ -17,6 +17,7 @@ class CreatePagosTable extends Migration
             $table->id();
 
                 $table->foreignId('tratamiento_id')->constrained('tratamientos')->onDelete('cascade');
+                $table->foreignId('paciente_id')->constrained('pacientes')->onDelete('cascade');
                 
                 $table->date('fecha');
                 $table->decimal('total', 8, 2);

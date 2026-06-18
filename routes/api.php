@@ -2,11 +2,14 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CitaController;
+use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OdontogramaController;
 use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\PagoController;
+use App\Http\Controllers\RolController;
 use App\Http\Controllers\TratamientoController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,7 +28,14 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanc
 
 
 //Route::get('/pacientes/test', [PacienteController::class, 'test']);
+
+//Route::apiResource('users', UserController::class);
+Route::middleware('auth:sanctum')->apiResource('users', UserController::class);
+Route::apiResource('roles', RolController::class);
+
+Route::apiResource('clientes', ClienteController::class);
 Route::apiResource('pacientes', PacienteController::class);
+
 Route::apiResource('citas', CitaController::class);
 Route::apiResource('tratamientos', TratamientoController::class);
 Route::apiResource('pagos', PagoController::class);
